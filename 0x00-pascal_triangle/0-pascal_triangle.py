@@ -1,5 +1,9 @@
 #!/usr/bin/python3
+"""pascal triangle alx interview"""
+
+
 def pascal_triangle(n):
+    """function returns list of integers representing the pascal triangle"""
     if (n <= 0):
         return([])
     triangle = []
