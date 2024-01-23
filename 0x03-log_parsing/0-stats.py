@@ -1,46 +1,47 @@
 #!/usr/bin/python3
 """task"""
 import sys
-import signal
 
 
-def print_stats(total_size, status_co):
-    """function status"""
-    print("File size: {}".format(total_size))
-    for code in sorted(status_co):
-        print("{}: {}".format(code, status_co[code]))
+def print_status(dicto, file_size):
+    """function status """
+
+    print("File size: {}".format(file_size))
+    for i, j in sorted(dictio.items()):
+        if j != 0:
+            print("{}: {}".format(i, j))
 
 
-def signal_handler(sig, frame):
-    print_stats(total_size, status_co)
-    sys.exit(0)
-
-
-signal.signal(signal.SIGINT, signal_handler)
-
-line_count = 0
-total_size = 0
-status_co = {}
+file_size = 0
+inc = 0
+count = 0
+dictio = {"200": 0,
+          "301": 0,
+          "400": 0,
+          "401": 0,
+          "403": 0,
+          "404": 0,
+          "405": 0,
+          "500": 0}
 
 try:
-    for line in sys.stdin:
-        tokens = line.split()
-        if len(tokens) >= 9:
-            status_code = tokens[-2]
-            file_size = int(tokens[-1])
+    for k in sys.stdin:
+        k_line = k.split()
+        k_line = k_line[::-1]
 
-            total_size += file_size
+        if len(k_line) > 2:
+            count += 1
 
-            if status_code.isdigit():
-                status_code = int(status_code)
-                if status_code in [200, 301, 400, 401, 403, 404, 405, 500]:
-                    status_co[status_code] = status_co.get(status_code, 0) + 1
+            if count <= 10:
+                file_size += int(k_line[0])
+                inc = k_line[1]
 
-            line_count += 1
+                if (inc in dictio.keys()):
+                    dictio[inc] += 1
 
-            if line_count % 10 == 0:
-                print_stats(total_size, status_co)
+            if (count == 10):
+                print_status(dictio, file_size)
+                count = 0
 
-except KeyboardInterrupt:
-    print_stats(total_size, status_co)
-    sys.exit(0)
+finally:
+    print_status(dictio, file_size)
