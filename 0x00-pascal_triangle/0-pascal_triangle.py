@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""pascall triangle alx interview"""
+"""pascal triangle alx interview"""
 
 
 def pascal_triangle(n):
