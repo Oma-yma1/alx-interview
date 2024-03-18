@@ -1,1 +1,1 @@
-minimum
+minimumi operation
