@@ -6,7 +6,8 @@ Change comes from within
 
 def makeChange(coins, total):
     """
-    Given a pile of coins of different values, determine the few number of coins needed to meet a given amount total
+    Given a pile of coins of different values, determine the few number of
+    coins needed to meet a given amount total
     """
     if total < 1:
         return 0
