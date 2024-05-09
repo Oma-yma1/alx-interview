@@ -4,7 +4,7 @@ island Perimeter project
 """
 
 
-def island_perimeter(grid):
+def island_perimeter(fun):
     """Island Perimenter Function"""
     peri = 0
     for j in range(len(fun)):
